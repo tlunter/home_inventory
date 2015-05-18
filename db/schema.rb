@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515013354) do
+ActiveRecord::Schema.define(version: 20150518124538) do
 
   create_table "items", force: :cascade do |t|
     t.string  "name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20150515013354) do
     t.integer "item_id"
     t.integer "tag_id"
   end
+
+  add_index "items_tags", ["item_id", "tag_id"], name: "unique_items_and_tags", unique: true
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
