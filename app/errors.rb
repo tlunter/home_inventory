@@ -1,2 +1,5 @@
 BaseError = Class.new(StandardError)
 MalformedRequestError = Class.new(BaseError)
+BadModelOptions = Class.new(BaseError)
+ConflictingModelOptions = Class.new(BaseError)
+NoSuchObject = Class.new(BaseError)
