@@ -6,6 +6,8 @@ task :bundle_environment do
 end
 
 task :app_environment do
+  require 'errors'
+
   Dir['app/*'].each do |folder|
     if File.directory?(folder)
       Dir["#{folder}/**/*"].each do |file|
