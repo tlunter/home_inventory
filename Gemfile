@@ -5,6 +5,7 @@ gem 'activesupport', require: ['active_support', 'active_support/core_ext']
 gem 'rake'
 gem 'sinatra'
 gem 'sqlite3'
+gem 'unicorn'
 
 group :development do
   gem 'pry'
