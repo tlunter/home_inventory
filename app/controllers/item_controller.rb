@@ -5,7 +5,7 @@ class ItemController < BaseController
     list.to_json
   end
 
-  get '/item/:item_id/tags' do |item_id|
+  get '/item/:item_id/tags/?' do |item_id|
     get_item(item_id).to_json(include: :tags)
   end
 

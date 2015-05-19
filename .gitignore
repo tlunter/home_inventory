@@ -1,1 +1,4 @@
 *.sqlite3
+public
+bower_components
+node_modules
