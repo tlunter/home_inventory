@@ -20,16 +20,16 @@ var ItemsList = React.createClass({
         _that.setState({ items: items });
       });
   },
+  save: function(itemId, state) {
+    axios.put('/item/' + itemId, JSON.stringify(state))
+      .then(function(response) {
+        this.load();
+      }.bind(this));
+  },
   render: function() {
     var items = this.state.items.map(function(item) {
-      return (
-        <div key={item.id}>
-          <h1>{item.name}</h1>
-          <h2>{item.amount} {item.unit}</h2>
-          <TagsList tags={item.tags} />
-        </div>
-      );
-    });
-    return (<div>{items}</div>);
+      return <Item data={item} onSave={this.save} />;
+    }, this);
+    return (<div className="row">{items}</div>);
   }
 });

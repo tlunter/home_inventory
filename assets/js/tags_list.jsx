@@ -1,12 +1,12 @@
 var TagsList = React.createClass({
   render: function() {
     var tags = this.props.tags.map(function(tag) {
-      return <li key={tag.id}>{tag.name}</li>
+      return <span className="card badge bordered" key={tag.id}>{tag.name}</span>
     });
     return (
-      <ul>
+      <span>
         {tags}
-      </ul>
+      </span>
     );
   }
 });
