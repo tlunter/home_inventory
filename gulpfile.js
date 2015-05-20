@@ -20,7 +20,7 @@ var paths = {
 
 gulp.task('less', function() {
   gulp.src(paths.less)
-    .pipe(concat('style.css'))
+    .pipe(concat('app.css'))
     .pipe(less())
     .on('error', swallowError)
     .pipe(gulp.dest('./public/css'));
