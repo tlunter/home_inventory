@@ -29,6 +29,12 @@ module TagService
     end
   end
 
+  def search(search_term)
+    Tag.where('name LIKE ?', "%#{search_term.to_s}%").tap do |results|
+      puts "Matched Results: #{results.inspect}"
+    end
+  end
+
   def get_tag(tag_id)
     Tag.find_by(id: tag_id).tap do |tag|
       fail NoSuchObject, tag_id unless tag

@@ -3,6 +3,8 @@ task :bundle_environment do
 
   Bundler.require(:default, ENV['APP_ENV'].to_sym)
   $LOAD_PATH << File.expand_path('app', '.')
+
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
 end
 
 task :app_environment do

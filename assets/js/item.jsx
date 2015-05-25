@@ -34,6 +34,17 @@ var Item = React.createClass({
 
     this.setState({ edit: false });
   },
+  onDragOver: function(event) {
+    event.preventDefault();
+  },
+  onDrop: function(event) {
+    event.preventDefault();
+    var tagJson = event.dataTransfer.getData('tag');
+    if (tagJson.length > 0) {
+      var tag = JSON.parse(tagJson);
+      this.props.addTag(this.props.data.id, tag.id);
+    }
+  },
   change: function(field) {
     return function(field, event) {
       var updates = {};
@@ -43,9 +54,9 @@ var Item = React.createClass({
   },
   renderStatic: function() {
     return (
-      <div className="card">
+      <div className="card" onDragOver={this.onDragOver} onDrop={this.onDrop}>
         <div className="card-content black-text">
-          <TagsList tags={this.props.data.tags} />
+          <TagsBadges tags={this.props.data.tags} />
           <span className="card-title black-text">{this.state.name}</span>
           <p>{this.state.amount} {this.state.unit}</p>
         </div>
@@ -61,7 +72,6 @@ var Item = React.createClass({
     return (
       <div className="card">
         <div className="card-content black-text">
-          <TagsList tags={item.tags} />
           <div className="row">
             <div className="input-field col s12">
               <input id="name" type="text" value={this.state.name} onChange={this.change('name')} />
@@ -78,6 +88,11 @@ var Item = React.createClass({
             <div className="input-field col s12">
               <input id="unit" type="text" value={this.state.unit} onChange={this.change('unit')} />
               <label className="active" htmlFor="unit">Unit</label>
+            </div>
+          </div>
+          <div className="row">
+            <div className="input-field col s12">
+              <TagsEdit tags={item.tags} removeTag={this.props.removeTag} findAndAddTag={this.props.findAndAddTag} />
             </div>
           </div>
         </div>

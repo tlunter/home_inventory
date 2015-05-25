@@ -1,7 +1,10 @@
 var Home = React.createClass({
   render: function() {
     return (
-      <ItemsList />
+      <div>
+        <ItemsList />
+        <TagsList />
+      </div>
     );
   }
 });

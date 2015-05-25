@@ -1,8 +1,19 @@
-span.badge.card {
+div.badge {
+  display: inline-block;
   position: static;
-  float: right;
   margin-left: 3px;
   margin-right: 3px;
+
+  min-width: 3rem;
+  padding: 0 6px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 22px;
+  color: #757575;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 20px;
 
   &.bordered {
     font-weight: 300;
@@ -11,4 +22,76 @@ span.badge.card {
     background-color: #26a69a;
     border-radius: 2px;
   }
+
+  &.selected {
+    line-height: 20px;
+    border: 1px solid #1f867d;
+  }
+}
+
+.tags-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 3rem;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  padding: 0;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  transition: all .3s;
+
+  display: table;
+
+  .tags-edit {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .tags-list {
+    margin: 0;
+    padding: 0;
+
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+
+    div, input {
+      display: inline-block;
+      padding: 0;
+      margin-bottom: 0;
+      padding: 0 0.5em;
+
+      &.fixed {
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
+      }
+
+      &.the-rest {
+        -webkit-flex: auto;
+        flex: auto;
+      }
+    }
+  }
+
+  input[type=text] {
+    border: 0;
+    height: auto;
+    width: auto;
+
+    &:focus:not([readonly]) {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
 }

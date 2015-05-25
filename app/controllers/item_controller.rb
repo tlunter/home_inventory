@@ -23,7 +23,15 @@ class ItemController < BaseController
     update(item_id, attributes).to_json
   end
 
-  post '/item/:item_id/tag/:tag_id/?' do |tag_id, item_id|
+  get '/item/:item_id/tag_search/?' do |item_id|
+    possible_tags(item_id, params[:search_term]).to_json
+  end
+
+  post '/item/:item_id/tag/:tag_id/?' do |item_id, tag_id|
     tag(tag_id, item_id).to_json(include: :tags)
+  end
+
+  delete '/item/:item_id/tag/:tag_id/?' do |item_id, tag_id|
+    remove_tag(item_id, tag_id).to_json(include: :tags)
   end
 end
