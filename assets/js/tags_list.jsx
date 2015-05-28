@@ -1,3 +1,6 @@
+import React from 'react';
+import axios from 'axios';
+
 var TagsList = React.createClass({
   getInitialState: function() {
     return { tags: [] };
@@ -36,3 +39,5 @@ var TagsList = React.createClass({
     );
   }
 });
+
+export default TagsList;

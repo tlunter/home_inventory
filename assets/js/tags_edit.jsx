@@ -1,3 +1,5 @@
+import React from 'react';
+
 function isNodeInRoot(node, root) {
   while (node) {
     if (node === root) {
@@ -65,3 +67,5 @@ var TagsEdit = React.createClass({
     );
   }
 });
+
+export default TagsEdit;

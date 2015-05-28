@@ -1,3 +1,8 @@
+import React from 'react';
+
+import TagsBadges from 'tags_badges.jsx';
+import TagsEdit from 'tags_edit.jsx';
+
 var Item = React.createClass({
   getInitialState: function() {
     return {
@@ -118,3 +123,5 @@ var Item = React.createClass({
     );
   }
 });
+
+export default Item;

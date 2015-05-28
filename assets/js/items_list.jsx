@@ -1,3 +1,8 @@
+import React from 'react';
+import axios from 'axios';
+
+import Item from 'item.jsx';
+
 function NoTagsError() {}
 NoTagsError.prototype = Object.create(Error.prototype);
 
@@ -59,6 +64,21 @@ var ItemsList = React.createClass({
     var items = this.state.items.map(function(item) {
       return <Item data={item} onSave={this.save} addTag={this.addTag} removeTag={_.partial(this.removeTag, item.id)} findAndAddTag={_.partial(this.findAndAddTag, item.id)} />;
     }, this);
-    return (<div className="row">{items}</div>);
+    return (<div>
+      <div className="row">{items}</div>
+      <div className="fixed-action-btn" style={{bottom: 45, right: 24}}>
+        <a className="btn-floating btn-large red">
+          <i className="large mdi-editor-mode-edit"></i>
+        </a>
+        <ul>
+          <li><a className="btn-floating red"><i className="large mdi-editor-insert-chart"></i></a></li>
+          <li><a className="btn-floating yellow darken-1"><i className="large mdi-editor-format-quote"></i></a></li>
+          <li><a className="btn-floating green"><i className="large mdi-editor-publish"></i></a></li>
+          <li><a className="btn-floating blue"><i className="large mdi-editor-attach-file"></i></a></li>
+        </ul>
+      </div>
+    </div>);
   }
 });
+
+export default ItemsList;
