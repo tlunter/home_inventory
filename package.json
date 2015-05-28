@@ -1,14 +1,35 @@
 {
   "name": "home_inventory",
   "version": "0.0.1",
+  "dependencies": {
+    "classnames": "^1.2.0",
+    "react": "0.13.1",
+    "axios": "^0.5.4",
+    "underscore": "^1.8.3"
+  },
   "devDependencies": {
+    "babelify": "^5.0.4",
+    "browserify": "^9.0.8",
+    "browserify-shim": "^3.8.5",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
-    "gulp-copy": "^0.0.2",
     "gulp-filter": "^2.0.2",
-    "gulp-flatten": "^0.0.4",
     "gulp-less": "^2.0.1",
-    "gulp-react": "^3.0.1",
-    "main-bower-files": "^2.7.0"
+    "main-bower-files": "^2.7.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "aviator": "global:Aviator",
+    "axios": "global:axios",
+    "bluebird": "global:Promise",
+    "jquery": "global:$",
+    "moment": "global:moment",
+    "react": "global:React",
+    "underscore": "global:_"
   }
 }
