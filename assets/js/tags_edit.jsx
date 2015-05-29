@@ -1,4 +1,6 @@
 import React from 'react';
+import _ from 'underscore';
+import classNames from 'classnames';
 
 function isNodeInRoot(node, root) {
   while (node) {
@@ -20,7 +22,7 @@ var TagsEdit = React.createClass({
   },
 
   load: function() {
-    axios.get('/tags/')
+    axios.get('/api/tags/')
       .then(function(response) {
         this.setState({ allTags: response.data });
       }.bind(this));

@@ -10,7 +10,7 @@ var TagsList = React.createClass({
   },
   load: function() {
     var _that = this;
-    axios.get('/tags/')
+    axios.get('/api/tags/')
       .then(function(response) {
         _that.setState({ tags: response.data });
       });

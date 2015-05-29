@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 
 import Item from 'item.jsx';
 
@@ -15,10 +16,10 @@ var ItemsList = React.createClass({
   },
   load: function() {
     var _that = this;
-    return axios.get('/items/')
+    return axios.get('/api/items/')
       .then(function(response) {
         return Promise.all(response.data.map(function(item) {
-          return axios.get('/item/' + item.id + '/tags/');
+          return axios.get('/api/item/' + item.id + '/tags/');
         }));
       })
       .then(function(response) {
@@ -31,25 +32,25 @@ var ItemsList = React.createClass({
       });
   },
   save: function(itemId, state) {
-    return axios.put('/item/' + itemId, JSON.stringify(state))
+    return axios.put('/api/item/' + itemId, JSON.stringify(state))
       .then(function(response) {
         return this.load();
       }.bind(this));
   },
   addTag: function(itemId, tagId) {
-    return axios.post('/item/' + itemId + '/tag/' + tagId)
+    return axios.post('/api/item/' + itemId + '/tag/' + tagId)
       .then(function(response) {
         return this.load();
       }.bind(this));
   },
   removeTag: function(itemId, tagId) {
-    return axios.delete('/item/' + itemId + '/tag/' + tagId)
+    return axios.delete('/api/item/' + itemId + '/tag/' + tagId)
       .then(function(response) {
         return this.load();
       }.bind(this));
   },
   findAndAddTag: function(itemId, searchTerm) {
-    return axios.get('/item/' + itemId + '/tag_search/', { search_term: searchTerm })
+    return axios.get('/api/item/' + itemId + '/tag_search/', { search_term: searchTerm })
       .then(function(response) {
         return response.data;
       })
@@ -62,7 +63,13 @@ var ItemsList = React.createClass({
   },
   render: function() {
     var items = this.state.items.map(function(item) {
-      return <Item data={item} onSave={this.save} addTag={this.addTag} removeTag={_.partial(this.removeTag, item.id)} findAndAddTag={_.partial(this.findAndAddTag, item.id)} />;
+      return <Item
+              data={item}
+              onSave={this.save}
+              addTag={this.addTag}
+              removeTag={_.partial(this.removeTag, item.id)}
+              findAndAddTag={_.partial(this.findAndAddTag, item.id)}
+              />;
     }, this);
     return (<div>
       <div className="row">{items}</div>

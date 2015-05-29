@@ -17,19 +17,5 @@
     "gulp-less": "^2.0.1",
     "main-bower-files": "^2.7.0",
     "vinyl-source-stream": "^1.0.0"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "aviator": "global:Aviator",
-    "axios": "global:axios",
-    "bluebird": "global:Promise",
-    "jquery": "global:$",
-    "moment": "global:moment",
-    "react": "global:React",
-    "underscore": "global:_"
   }
 }

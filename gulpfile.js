@@ -51,23 +51,17 @@ gulp.task('html', function() {
     .pipe(gulp.dest('./public/.'));
 });
 
-gulp.task('bower', function() {
-  var fontFilter = gulpFilter(['*.eot', '*.woff', '*.svg', '*.ttf']);
-  var robotoFilter = gulpFilter(['roboto/*.woff', 'roboto/*.ttf']);
-  var jsFilter = gulpFilter('*.js');
+gulp.task('bower', ['bower:materialize:roboto', 'bower:css']);
+
+gulp.task('bower:materialize:roboto', function() {
+  gulp.src('./bower_components/materialize/font/**/*')
+    .pipe(gulp.dest('./public/font'));
+});
+
+gulp.task('bower:css', function() {
   var cssFilter = gulpFilter('*.css');
 
   gulp.src(bower())
-    .pipe(fontFilter)
-    .pipe(gulp.dest('./public/fonts'))
-    .pipe(fontFilter.restore())
-    .pipe(robotoFilter)
-    .pipe(gulp.dest('./public/font'))
-    .pipe(robotoFilter.restore())
-    .pipe(jsFilter)
-    .pipe(concat('lib.js'))
-    .pipe(gulp.dest('./public/js'))
-    .pipe(jsFilter.restore())
     .pipe(cssFilter)
     .pipe(concat('lib.css'))
     .pipe(gulp.dest('./public/css'))
